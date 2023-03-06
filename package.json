@@ -8,6 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=8.0.0",
+    "yarn": "please-use-only-npm"
+  },
   "dependencies": {
     "@types/node": "18.14.6",
     "@types/react": "18.0.28",
@@ -18,5 +24,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "2.8.4"
   }
 }
