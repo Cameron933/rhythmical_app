@@ -6,10 +6,8 @@ describe("Home", () => {
   it("renders a heading", () => {
     render(<Home />);
 
-    const heading = screen.getByRole("heading", {
-      name: /welcome to next\.js!/i,
-    });
+    const homeImg = screen.getByRole("img", { name: /next\.js logo/i });
 
-    expect(heading).toBeInTheDocument();
+    expect(homeImg).toBeInTheDocument();
   });
 });
