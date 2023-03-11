@@ -28,14 +28,27 @@ Secondary.args = {
   label: "Button",
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: "large",
+export const Ternary = Template.bind({});
+Ternary.args = {
   label: "Button",
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: "small",
+export const Warning = Template.bind({});
+Warning.args = {
+  label: "Button",
+};
+
+export const Info = Template.bind({});
+Info.args = {
+  label: "Button",
+};
+
+export const Light = Template.bind({});
+Light.args = {
+  label: "Button",
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
   label: "Button",
 };

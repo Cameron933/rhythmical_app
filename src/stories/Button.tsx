@@ -13,7 +13,7 @@ interface ButtonProps {
   /**
    * How large should the button be?
    */
-  size?: "small" | "medium" | "large";
+  size?: "tiny" | "small" | "normal" | "large";
   /**
    * Button contents
    */
@@ -29,7 +29,7 @@ interface ButtonProps {
  */
 export const Button = ({
   primary = false,
-  size = "medium",
+  size = "normal",
   backgroundColor,
   label,
   ...props
@@ -38,7 +38,12 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={["storybook-button", `storybook-button--${size}`, mode].join(" ")}
+      className={[
+        "outline outline-primary",
+        "storybook-button",
+        `storybook-button--${size}`,
+        mode,
+      ].join(" ")}
       style={{ backgroundColor }}
       {...props}
     >
