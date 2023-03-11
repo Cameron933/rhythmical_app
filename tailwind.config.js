@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./public/index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -53,7 +56,78 @@ module.exports = {
         DEFAULT: "#FEFEFE",
       },
     },
-    extend: {},
+
+    fontSize: {
+      h1_medium: [
+        "7rem",
+        {
+          lineHeight: "72px",
+          fontWeight: "500",
+        },
+      ],
+      h2_regular: [
+        "2rem",
+        {
+          lineHeight: "48px",
+          fontWeight: "400",
+        },
+      ],
+      h3_light: [
+        "1.5rem",
+        {
+          lineHeight: "32px",
+          fontWeight: "300",
+        },
+      ],
+      h4_light: [
+        "1.25rem",
+        {
+          lineHeight: "28px",
+          fontWeight: "300",
+        },
+      ],
+      p_regular: [
+        "1rem",
+        {
+          lineHeight: "20px",
+          fontWeight: "400",
+        },
+      ],
+      p_light: [
+        "1rem",
+        {
+          lineHeight: "20px",
+          fontWeight: "300",
+        },
+      ],
+      base_regular: [
+        "0.875rem",
+        {
+          lineHeight: "18px",
+          fontWeight: "400",
+        },
+      ],
+      small_light: [
+        "0.75rem",
+        {
+          lineHeight: "14px",
+          fontWeight: "300",
+        },
+      ],
+      xsmall_light: [
+        "0.5rem",
+        {
+          lineHeight: "12px",
+          fontWeight: "300",
+        },
+      ],
+    },
+
+    extend: {
+      fontFamily: {
+        roboto: ["var(--font-roboto)", ...fontFamily.sans],
+      },
+    },
   },
   plugins: [],
 };
