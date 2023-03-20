@@ -8,6 +8,7 @@ export const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />;
-}
+};
+export default App;
