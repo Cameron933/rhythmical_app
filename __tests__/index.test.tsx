@@ -6,8 +6,8 @@ describe("Home", () => {
   it("renders a heading", () => {
     render(<Home />);
 
-    const homeImg = screen.getByRole("img", { name: /next\.js logo/i });
+    const homeText = screen.getByText("miao");
 
-    expect(homeImg).toBeInTheDocument();
+    expect(homeText).toBeInTheDocument();
   });
 });
