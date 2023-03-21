@@ -1,5 +1,6 @@
+import AudioControls from "@/components/AudioControls";
 import { MusicDetail } from "@/interfaces/music";
-import { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface Props {
   musicData: {
@@ -7,33 +8,51 @@ interface Props {
     data: MusicDetail[];
   };
 }
+type Duration = number | undefined;
 
 const Demo = (props: Props) => {
   const musicArray: MusicDetail[] = props.musicData.data;
 
+  const [trackIndex, setTrackIndex] = useState<number>(0);
+  const [trackProgress, setTrackProgress] = useState(0);
   const [currentMusic, setCurrentMusic] = useState<MusicDetail>(musicArray[0]);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const audioPlayer = useRef<HTMLAudioElement | null>(null);
+  // const { duration }: any = audioPlayer.current?.currentTime;
 
-  console.log(audioPlayer.current?.volume);
+  // const currentPercentage = duration ? `${(trackProgress / duration) * 100}%` : "0%";
+  // const trackStyling = `
+  //   -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+  // `;
 
-  const handlePlayAndPause = () => {
+  // console.log(audioPlayer.current?.volume);
+
+  const onPlayPauseClick = () => {
     setIsPlaying(!isPlaying);
     isPlaying ? audioPlayer.current?.play() : audioPlayer.current?.pause();
   };
 
-  const handleLastMusic = () => {
+  // const handleLastMusic = () => {
+  //   const currentMusicIndex = musicArray.findIndex((element) => element.url === currentMusic.url);
+  //   const lastMusicIndex = currentMusicIndex > 0 ? currentMusicIndex - 1 : musicArray.length - 1;
+  //   setCurrentMusic(musicArray[lastMusicIndex]);
+
+  //   setTimeout(() => {
+  //     audioPlayer.current?.play();
+  //   }, 500);
+  // };
+  const toPrevMusic = () => {
     const currentMusicIndex = musicArray.findIndex((element) => element.url === currentMusic.url);
-    const lastMusicIndex = currentMusicIndex > 0 ? currentMusicIndex - 1 : musicArray.length - 1;
-    setCurrentMusic(musicArray[lastMusicIndex]);
+    const nextMusicIndex = currentMusicIndex < musicArray.length - 1 ? currentMusicIndex - 1 : 0;
+    setCurrentMusic(musicArray[nextMusicIndex]);
 
     setTimeout(() => {
       audioPlayer.current?.play();
     }, 500);
   };
 
-  const handleNextMusic = () => {
+  const toNextMusic = () => {
     const currentMusicIndex = musicArray.findIndex((element) => element.url === currentMusic.url);
     const nextMusicIndex = currentMusicIndex < musicArray.length - 1 ? currentMusicIndex + 1 : 0;
     setCurrentMusic(musicArray[nextMusicIndex]);
@@ -46,12 +65,14 @@ const Demo = (props: Props) => {
   return (
     <main>
       <p className="self-center">I am music player</p>
-      <audio ref={audioPlayer} src={currentMusic.url} onEnded={handleNextMusic} />
-      <div className="flex gap-5 bg-primary-400">
-        <button onClick={handlePlayAndPause}>{isPlaying ? "Play" : "Pause"}</button>
-        <button onClick={handleLastMusic}>Last</button>
-        <button onClick={handleNextMusic}>Next</button>
-      </div>
+      <audio ref={audioPlayer} src={currentMusic.url} onEnded={toNextMusic} />
+
+      <AudioControls
+        isPlaying={isPlaying}
+        onPlayPauseClick={onPlayPauseClick}
+        onPrevClick={toPrevMusic}
+        onNextClick={toNextMusic}
+      />
     </main>
   );
 };
