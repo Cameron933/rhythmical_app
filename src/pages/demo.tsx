@@ -19,26 +19,6 @@ const Demo = (props: Props) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  // const intervalRef = useRef();
-  // const isReady = useRef<boolean>(false);
-  // const { duration }: any = audioRef.current?.currentTime;
-  // const currentPercentage = duration ? `${(trackProgress / duration) * 100}%` : "0%";
-  // const trackStyling = `
-  //   -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
-  // `;
-
-  // const startTimer = () => {
-  //   // Clear any timers already running
-  //   clearInterval(intervalRef.current);
-
-  //   intervalRef.current = setInterval(() => {
-  //     if (audioRef.current.ended) {
-  //       toNextTrack();
-  //     } else {
-  //       setTrackProgress(audioRef.current.currentTime);
-  //     }
-  //   }, [1000]);
-  // };
 
   const onPlayPauseClick = () => {
     setIsPlaying(!isPlaying);
@@ -80,18 +60,6 @@ const Demo = (props: Props) => {
           onPrevClick={toPrevMusic}
           onNextClick={toNextMusic}
         />
-        {/* <input
-          type="range"
-          value={trackProgress}
-          step="1"
-          min="0"
-          max={duration ? duration : `${duration}`}
-          className="progress"
-          onChange={(e) => onScrub(e.target.value)}
-          onMouseUp={onScrubEnd}
-          onKeyUp={onScrubEnd}
-          style={{ background: trackStyling }}
-        /> */}
       </div>
     </main>
   );
