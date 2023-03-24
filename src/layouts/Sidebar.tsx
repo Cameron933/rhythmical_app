@@ -2,7 +2,7 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div className="outline outline-primary bg-current w-80">
+    <div className="outline outline-primary w-80 h-full relative ">
       <p>I am side bar</p>
     </div>
   );

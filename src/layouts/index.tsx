@@ -8,9 +8,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex">
+    <div className="flex w-screen h-screen">
       <Sidebar />
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full justify-between">
         <main>{children}</main>
         <Player />
       </div>

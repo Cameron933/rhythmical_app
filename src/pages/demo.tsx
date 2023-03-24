@@ -50,7 +50,7 @@ const Demo = (props: Props) => {
   }, [isPlaying, currentMusic]);
 
   return (
-    <main className="flex flex-col items-center justify-center">
+    <main className="">
       <p className="text-h3_light">Music player</p>
       <audio ref={audioRef} src={currentMusic.url} onEnded={toNextMusic} />
       <div className="w-full">
