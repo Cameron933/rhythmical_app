@@ -2,7 +2,7 @@ import React from "react";
 
 const Player = () => {
   return (
-    <div className="outline outline-secondary h-32 w-full">
+    <div className="fixed bottom-0 h-[96px] w-full border border-secondary">
       <p>I am a player</p>
     </div>
   );
