@@ -2,7 +2,6 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import RecentlyPlayed from "@/components/RecentlyPlayed";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 const Home = () => {
@@ -16,10 +15,7 @@ const Home = () => {
       </Head>
       <div className="font-roboto">
         <div>miao</div>
-        <RecentlyPlayed />
-
         <button>button</button>
-        
       </div>
     </>
   );
