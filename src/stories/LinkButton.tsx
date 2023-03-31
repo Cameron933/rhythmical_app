@@ -1,13 +1,30 @@
 import React from "react";
+import * as Icons from "react-icons/ri";
+import { IconType } from "react-icons";
+
+interface DynamicFaIconProps {
+  name: keyof typeof Icons;
+}
+
+const DynamicFaIcon = ({ name }: DynamicFaIconProps) => {
+  const IconComponent: IconType = Icons[name];
+
+  if (!IconComponent) {
+    // Return a default one
+    return <Icons.RiHome5Fill className="w-5 h-5 mr-5" />;
+  }
+
+  return <IconComponent className="w-5 h-5 mr-5" />;
+};
 
 interface ButtonProps {
-  iconPath: string;
+  iconName: keyof typeof Icons;
   size?: "tiny" | "small" | "normal" | "large";
 }
 
 export const LinkButton = ({
   size = "normal",
-  iconPath,
+  iconName,
   children,
   ...otherProps
 }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
@@ -19,18 +36,21 @@ export const LinkButton = ({
   };
 
   return (
-    <button
-      type="button"
-      className={`${buttonSize[size]} text-p_regular text-light-200 hover:text-light text-center inline-flex items-center transition duration-200 ease-in-out`}
-      {...otherProps}
-    >
-      <svg className="w-5 h-5 mr-5" viewBox="0 0 1024 1024" xmlns={`${iconPath}`}>
-        <path
-          fill="currentColor"
-          d="M512 128 128 447.936V896h255.936V640H640v256h255.936V447.936z"
-        />
-      </svg>
-      {children}
-    </button>
+    <div className="relative w-full group">
+      <div className="relative z-50 my-2 ml-4">
+        <button
+          type="button"
+          className={`${buttonSize[size]} text-p_regular text-light-200 group-hover:text-light text-center inline-flex items-center transition duration-200 ease-in-out`}
+          {...otherProps}
+        >
+          <DynamicFaIcon name={iconName} />
+          {children}
+        </button>
+      </div>
+      <div className="absolute left-0 invisible top-2 group-hover:visible">
+        <div className="absolute left-0 w-2 h-8 bg-primary" />
+        <div className="absolute w-16 h-8 left-2 bg-gradient-to-r from-primary/90 to-primary/0 " />
+      </div>
+    </div>
   );
 };
