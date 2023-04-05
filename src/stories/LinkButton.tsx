@@ -2,11 +2,11 @@ import React from "react";
 import * as Icons from "react-icons/ri";
 import { IconType } from "react-icons";
 
-interface DynamicFaIconProps {
+interface DynamicRiIconProps {
   name: keyof typeof Icons;
 }
 
-const DynamicFaIcon = ({ name }: DynamicFaIconProps) => {
+const DynamicRiIcon = ({ name }: DynamicRiIconProps) => {
   const IconComponent: IconType = Icons[name];
 
   if (!IconComponent) {
@@ -43,7 +43,7 @@ export const LinkButton = ({
           className={`${buttonSize[size]} text-p_regular text-light-200 group-hover:text-light text-center inline-flex items-center transition duration-200 ease-in-out`}
           {...otherProps}
         >
-          <DynamicFaIcon name={iconName} />
+          <DynamicRiIcon name={iconName} />
           {children}
         </button>
       </div>
