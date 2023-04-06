@@ -13,7 +13,12 @@ const Player = () => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  useEffect(() => {
+    setCurrentMusic(playerList[0]);
+  }, [playerList]);
+
   const onPlayPauseClick = () => {
+    console.log(playerList);
     setIsPlaying(!isPlaying);
     isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
   };
@@ -52,10 +57,10 @@ const Player = () => {
   }, [isPlaying, currentMusic]);
 
   return (
-    <div className="fixed bottom-0 h-[10vh] w-full bg-dark-400/80">
+    <div className="fixed bottom-0 h-[10vh] w-full bg-dark-400/80 flex">
       <p className="text-h3_light">Music player</p>
       <audio ref={audioRef} src={currentMusic?.url} onEnded={toNextMusic} />
-      <div className="">
+      <div className="ml-40 w-[960px]">
         <AudioControls
           isPlaying={isPlaying}
           onPlayPauseClick={onPlayPauseClick}
@@ -64,6 +69,7 @@ const Player = () => {
         />
       </div>
       <input
+        className=""
         type="range"
         min="0"
         max="1"
