@@ -12,7 +12,7 @@ type Duration = number | undefined;
 
 const Demo = (props: Props) => {
   const musicArray: MusicDetail[] = props.musicData.data;
-
+  const [volume, setVolume] = useState<number>(1.0);
   const [trackIndex, setTrackIndex] = useState<number>(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [currentMusic, setCurrentMusic] = useState<MusicDetail>(musicArray[0]);
@@ -39,6 +39,15 @@ const Demo = (props: Props) => {
     setIsPlaying(true);
   };
 
+  const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
+    const value = parseFloat(target.value);
+    setVolume(value);
+    if (audioRef.current) {
+      audioRef.current.volume = value;
+    }
+  };
+
   useEffect(() => {
     if (isPlaying) {
       setTimeout(() => {
@@ -61,6 +70,14 @@ const Demo = (props: Props) => {
           onNextClick={toNextMusic}
         />
       </div>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value={volume}
+        onChange={handleVolumeChange}
+      />
     </main>
   );
 };

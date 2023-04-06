@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex flex-col w-screen h-screen">
+    <main className="flex flex-col w-screen h-screen">
       <div className="flex w-[100vw] h-[90vh]">
         <SideBar />
         <div className="flex flex-col">
@@ -18,7 +18,7 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
       </div>
       <Player />
-    </div>
+    </main>
   );
 };
 export default Layout;

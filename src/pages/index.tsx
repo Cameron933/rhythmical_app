@@ -1,10 +1,26 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import RecentlyPlayed from "@/components/RecentlyPlayed";
+import { useEffect, useContext } from "react";
+import { PlayerContext } from "@/contexts/playerContext";
+import { MusicDetail } from "@/interfaces/music";
+
+interface Props {
+  musicData: {
+    code: number;
+    data: MusicDetail[];
+  };
+}
 
 const inter = Inter({ subsets: ["latin"] });
 
-const Home = () => {
+const Home = ({ musicData }: Props) => {
+  const { setPlayerList } = useContext(PlayerContext);
+  useEffect(() => setPlayerList(musicData.data), [musicData.data, setPlayerList]);
+  const handleButton = () => {
+    setPlayerList(musicData.data.reverse());
+    console.log("setPlayerList complete from index component");
+  };
+
   return (
     <>
       <Head>
@@ -14,10 +30,20 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="font-roboto">
-        <div>miao</div>
-        <button>button</button>
+        <div>Home page</div>
+        <button onClick={handleButton}>setData</button>
       </div>
     </>
   );
 };
 export default Home;
+
+export const getServerSideProps = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_MUSIC_SERVER_ADDRESS}/song/url/v1?id=108242,25727803,399354373,108914,26305541&level=lossless`
+  );
+  const musicData = await response.json();
+  return {
+    props: { musicData },
+  };
+};
