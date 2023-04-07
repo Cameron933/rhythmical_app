@@ -57,10 +57,12 @@ const Player = () => {
   }, [isPlaying, currentMusic]);
 
   return (
-    <div className="fixed bottom-0 h-[10vh] w-full bg-dark-400/80 flex">
-      <p className="text-h3_light">Music player</p>
-      <audio ref={audioRef} src={currentMusic?.url} onEnded={toNextMusic} />
-      <div className="ml-40 w-[960px]">
+    <div className="px-4 fixed bottom-0 h-[10vh] w-full bg-dark-400/80 grid grid-cols-3">
+      <div className="flex items-center justify-start">
+        <p className="text-h3_light">Music player</p>
+      </div>
+      <div className="flex items-center w-full">
+        <audio ref={audioRef} src={currentMusic?.url} onEnded={toNextMusic} />
         <AudioControls
           isPlaying={isPlaying}
           onPlayPauseClick={onPlayPauseClick}
@@ -68,15 +70,18 @@ const Player = () => {
           onNextClick={toNextMusic}
         />
       </div>
-      <input
-        className=""
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value={volume}
-        onChange={handleVolumeChange}
-      />
+
+      <div className="flex items-center justify-end">
+        <input
+          className="w-[100px]"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
+      </div>
     </div>
   );
 };
