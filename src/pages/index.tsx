@@ -2,7 +2,6 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import { useEffect, useContext } from "react";
 import { PlayerContext } from "@/contexts/playerContext";
-import { MusicDetail } from "@/interfaces/music";
 
 interface Props {
   musicData: {
@@ -45,10 +44,9 @@ const Home = ({ musicData }: Props) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  const response = await fetch(
+  const musicData = await fetch(
     `${process.env.NEXT_MUSIC_SERVER_ADDRESS}/song/url/v1?id=108242,25727803,399354373,108914,26305541&level=lossless`
-  );
-  const musicData = await response.json();
+  ).then((res) => res.json());
   return {
     props: { musicData },
   };

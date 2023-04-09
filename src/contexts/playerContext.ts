@@ -1,4 +1,3 @@
-import { MusicDetail } from "@/interfaces/music";
 import { createContext } from "react";
 
 interface PlayerContextType {

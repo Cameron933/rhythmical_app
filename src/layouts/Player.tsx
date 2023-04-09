@@ -1,8 +1,7 @@
 import AudioControls from "@/components/AudioControls";
-import { MusicDetail } from "@/interfaces/music";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { PlayerContext } from "@/contexts/playerContext";
-
+import { AiTwotoneSound } from "react-icons/ai";
 const Player = () => {
   const { playerList } = useContext(PlayerContext);
   const [volume, setVolume] = useState<number>(1.0);
@@ -72,6 +71,9 @@ const Player = () => {
       </div>
 
       <div className="flex items-center justify-end">
+        <div className="flex items-center justify-center w-16 h-16 text-primary">
+          <AiTwotoneSound />
+        </div>
         <input
           className="w-[100px]"
           type="range"
