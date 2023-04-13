@@ -2205,6 +2205,10 @@ html {
   height: 64px;
 }
 
+.h-\[8px\] {
+  height: 8px;
+}
+
 .h-\[90vh\] {
   height: 90vh;
 }
@@ -2247,6 +2251,10 @@ html {
 
 .w-\[300px\] {
   width: 300px;
+}
+
+.w-\[400px\] {
+  width: 400px;
 }
 
 .w-full {
@@ -2297,8 +2305,16 @@ html {
   gap: 0.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border-2 {
@@ -2435,6 +2451,14 @@ html {
 
 .pl-1 {
   padding-left: 0.25rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
 }
 
 .text-center {

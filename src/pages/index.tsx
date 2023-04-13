@@ -36,7 +36,6 @@ const Home = ({ musicData }: Props) => {
       </Head>
       <div className="font-roboto">
         <div>Home page</div>
-        <button onClick={handleButton}>setData</button>
       </div>
     </>
   );
