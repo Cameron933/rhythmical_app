@@ -5,6 +5,7 @@ import GlobalLayout from "../layouts";
 import Head from "next/head";
 import { useState } from "react";
 import { PlayerContext } from "@/contexts/playerContext";
+import { MusicDetail } from "@/interfaces/music";
 
 export const roboto = Roboto({
   weight: ["300", "400", "500"],
@@ -13,8 +14,8 @@ export const roboto = Roboto({
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [listIndex, setListIndex] = useState(0);
-  const [playerList, setPlayerList] = useState<any>([]);
+  const [listIndex, setListIndex] = useState<number>(0);
+  const [playerList, setPlayerList] = useState<MusicDetail[]>([]);
 
   return (
     <>

@@ -5,13 +5,13 @@ import { AiTwotoneSound } from "react-icons/ai";
 import { MusicDetail } from "@/interfaces/music";
 
 const MusicPlayerBar = () => {
-  const { playerList } = useContext(PlayerContext);
+  const { listIndex, setListIndex, playerList } = useContext(PlayerContext);
   const [volume, setVolume] = useState<number>(1.0);
 
   const [currentProgressedTime, setCurrentProgressedTime] = useState(0);
   const [currentMusicTime, setCurrentMusicTime] = useState(0);
 
-  const [currentMusic, setCurrentMusic] = useState<MusicDetail>(playerList[0]);
+  const [currentMusic, setCurrentMusic] = useState<MusicDetail>(playerList[listIndex]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -27,15 +27,17 @@ const MusicPlayerBar = () => {
   };
 
   const toPrevMusic = () => {
-    const currentMusicIndex = playerList.findIndex((music) => music.url === currentMusic.url);
+    const currentMusicIndex = listIndex;
     const nextMusicIndex = currentMusicIndex - 1 > 0 ? currentMusicIndex - 1 : 0;
+    setListIndex(nextMusicIndex);
     setCurrentMusic(playerList[nextMusicIndex]);
     setIsPlaying(true);
   };
 
   const toNextMusic = () => {
-    const currentMusicIndex = playerList.findIndex((music) => music.url === currentMusic.url);
+    const currentMusicIndex = listIndex;
     const nextMusicIndex = currentMusicIndex < playerList.length - 1 ? currentMusicIndex + 1 : 0;
+    setListIndex(nextMusicIndex);
     setCurrentMusic(playerList[nextMusicIndex]);
     setIsPlaying(true);
   };
