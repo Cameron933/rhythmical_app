@@ -13,6 +13,7 @@ export const roboto = Roboto({
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [listIndex, setListIndex] = useState(0);
   const [playerList, setPlayerList] = useState<any>([]);
 
   return (
@@ -20,7 +21,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <PlayerContext.Provider value={{ playerList, setPlayerList }}>
+      <PlayerContext.Provider value={{ listIndex, setListIndex, playerList, setPlayerList }}>
         <GlobalLayout>
           <Component {...pageProps} />
         </GlobalLayout>

@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import { useEffect, useContext } from "react";
 import { PlayerContext } from "@/contexts/playerContext";
+import { MusicDetail } from "@/interfaces/music";
 
 interface Props {
   musicData: {

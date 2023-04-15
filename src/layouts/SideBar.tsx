@@ -4,7 +4,7 @@ import { LinkButton } from "@/stories/LinkButton";
 
 const SideBar = () => {
   return (
-    <aside className="flex flex-col w-[300px] bg-black">
+    <aside className="flex flex-col w-[320px] h-[100vh] bg-black">
       <div className="flex items-center justify-around w-full h-28">
         <div className="flex items-center gap-2">
           <BsCollectionPlay className="w-8 h-8 text-light" />

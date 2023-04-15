@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import Player from "./Player";
-import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
 
 interface LayoutProps {
@@ -9,15 +8,12 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <main className="flex flex-col w-screen h-screen">
-      <div className="flex w-[100vw] h-[90vh]">
-        <SideBar />
-        <div className="flex flex-col">
-          <SearchBar />
-          <main className="mt-[64px] mb-[96px]">{children}</main>
-        </div>
+    <main className="flex w-screen h-screen">
+      <SideBar />
+      <div className="flex flex-col h-full w-[calc(100vw-320px)]">
+        <main className="mb-[120px] h-[calc(100vh-120px)] w-full">{children}</main>
+        <Player />
       </div>
-      <Player />
     </main>
   );
 };

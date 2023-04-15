@@ -1,4 +1,4 @@
-declare interface MusicDetail {
+export interface MusicDetail {
   id: number;
   url: string;
   br: number;

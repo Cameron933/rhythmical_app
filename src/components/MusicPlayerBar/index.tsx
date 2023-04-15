@@ -2,22 +2,19 @@ import AudioControls from "@/components/AudioControls";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { PlayerContext } from "@/contexts/playerContext";
 import { AiTwotoneSound } from "react-icons/ai";
-import { time } from "console";
+import { MusicDetail } from "@/interfaces/music";
 
 const MusicPlayerBar = () => {
   const { playerList } = useContext(PlayerContext);
   const [volume, setVolume] = useState<number>(1.0);
 
-  const [currentProgressTime, setCurrentProgressTime] = useState(0);
+  const [currentProgressedTime, setCurrentProgressedTime] = useState(0);
   const [currentMusicTime, setCurrentMusicTime] = useState(0);
+
   const [currentMusic, setCurrentMusic] = useState<MusicDetail>(playerList[0]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    setCurrentMusicTime(playerList[0].time);
-  }, [currentMusic]);
 
   useEffect(() => {
     setCurrentMusic(playerList[0]);
@@ -63,7 +60,7 @@ const MusicPlayerBar = () => {
   }, [isPlaying, currentMusic]);
 
   return (
-    <div className="px-4 fixed bottom-0 h-[10vh] w-full bg-dark-400/80 grid grid-cols-3">
+    <div className="px-4 fixed bottom-0 h-[120px] w-full bg-dark-400/80 grid grid-cols-3">
       <div className="flex items-center justify-start">
         <p className="text-h3_light">Music player</p>
       </div>
@@ -82,7 +79,7 @@ const MusicPlayerBar = () => {
           <div className="relative w-[400px] h-[5px] bg-white rounded-lg">
             <div className="absolute bg-primary-400 w-[220px] h-[5px] rounded-lg" />
           </div>
-          <div className="pl-4">{currentMusicTime}</div>
+          <div className="pl-4">4:00</div>
         </div>
       </div>
 
