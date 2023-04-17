@@ -1,20 +1,20 @@
 import AudioControls from "@/components/AudioControls";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { PlayerContext } from "@/contexts/playerContext";
+import { LyricContext } from "@/contexts/lyricContext";
 import { AiTwotoneSound } from "react-icons/ai";
-import { MusicDetail } from "@/interfaces/music";
+import { IMusicDetail } from "@/interfaces/music";
 
 const MusicPlayerBar = () => {
+  const { audioPlayer } = useContext(LyricContext);
   const { listIndex, setListIndex, playerList } = useContext(PlayerContext);
   const [volume, setVolume] = useState<number>(1.0);
 
   const [currentProgressedTime, setCurrentProgressedTime] = useState(0);
   const [currentMusicTime, setCurrentMusicTime] = useState(0);
 
-  const [currentMusic, setCurrentMusic] = useState<MusicDetail>(playerList[listIndex]);
+  const [currentMusic, setCurrentMusic] = useState<IMusicDetail>(playerList[listIndex]);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setCurrentMusic(playerList[0]);
@@ -23,7 +23,7 @@ const MusicPlayerBar = () => {
   const onPlayPauseClick = () => {
     console.log(playerList);
     setIsPlaying(!isPlaying);
-    isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
+    isPlaying ? audioPlayer?.current?.play() : audioPlayer?.current?.pause();
   };
 
   const toPrevMusic = () => {
@@ -46,18 +46,18 @@ const MusicPlayerBar = () => {
     const target = event.target as HTMLInputElement;
     const value = parseFloat(target.value);
     setVolume(value);
-    if (audioRef.current) {
-      audioRef.current.volume = value;
+    if (audioPlayer?.current) {
+      audioPlayer.current.volume = value;
     }
   };
 
   useEffect(() => {
     if (isPlaying) {
       setTimeout(() => {
-        audioRef.current?.play();
+        audioPlayer?.current?.play();
       }, 300);
     } else {
-      audioRef.current?.pause();
+      audioPlayer?.current?.pause();
     }
   }, [isPlaying, currentMusic]);
 
@@ -68,7 +68,7 @@ const MusicPlayerBar = () => {
       </div>
 
       <div className="flex flex-col justify-center items-center w-full gap-3">
-        <audio ref={audioRef} src={currentMusic?.url} onEnded={toNextMusic} />
+        <audio ref={audioPlayer} src={currentMusic?.url} onEnded={toNextMusic} />
         <AudioControls
           isPlaying={isPlaying}
           onPlayPauseClick={onPlayPauseClick}
