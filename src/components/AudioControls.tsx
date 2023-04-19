@@ -1,52 +1,80 @@
 import React from "react";
-import { FaPlay, FaPause, FaRandom, FaForward, FaBackward } from "react-icons/fa";
-import { ImLoop2 } from "react-icons/im";
+import { BiPlayCircle, BiPauseCircle, BiHeart } from "react-icons/bi";
+import { FiFastForward, FiSkipForward, FiSkipBack } from "react-icons/fi";
+import { IoPlayBackOutline } from "react-icons/io5";
+import { TbArrowsShuffle } from "react-icons/tb";
+import { BsRepeat } from "react-icons/bs";
+import { AiTwotoneSound } from "react-icons/ai";
 
-const AudioControls = ({ isPlaying, onPlayPauseClick, onPrevClick, onNextClick }: any) => {
+const AudioControls = ({
+  isPlaying,
+  onPlayPauseClick,
+  onPrevClick,
+  onNextClick,
+  volume,
+  handleVolumeChange,
+}: any) => {
   return (
-    <div className="flex items-center w-full gap-2">
-      <div className="flex justify-end flex-1 gap-2">
-        <button type="button" className="flex items-center justify-center w-8 h-8 text-primary">
-          <FaRandom className="w-4 h-4" />
-        </button>
-        <button
-          type="button"
-          className="flex items-center justify-center w-8 h-8 text-primary"
-          onClick={onPrevClick}
-        >
-          <FaBackward className="w-4 h-4" />
-        </button>
+    <div className="flex h-16 w-full items-center justify-between text-light">
+      <BiHeart className="h-6 w-6" />
+
+      <div className="flex w-full items-center gap-2">
+        <div className="flex flex-1 justify-end gap-2">
+          <button type="button" className="flex h-8 w-8 items-center justify-center">
+            <FiSkipBack className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            className="hidden h-8 w-8 items-center justify-center md:flex"
+            onClick={onPrevClick}
+          >
+            <IoPlayBackOutline className="h-4 w-4" />
+          </button>
+        </div>
+
+        {isPlaying ? (
+          <button type="button" className="items-center justify-center" onClick={onPlayPauseClick}>
+            <BiPauseCircle className="h-10 w-10" />
+          </button>
+        ) : (
+          <button type="button" className="items-center justify-center" onClick={onPlayPauseClick}>
+            <BiPlayCircle className="h-10 w-10" />
+          </button>
+        )}
+
+        <div className="flex flex-1 justify-start gap-2">
+          <button
+            type="button"
+            className="hidden h-8 w-8 items-center justify-center md:flex"
+            onClick={onNextClick}
+          >
+            <FiFastForward className="h-4 w-4" />
+          </button>
+          <button type="button" className="flex h-8 w-8 items-center justify-center">
+            <FiSkipForward className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
-      {isPlaying ? (
-        <button
-          type="button"
-          className="flex items-center justify-center w-8 h-8 bg-white rounded-full text-primary"
-          onClick={onPlayPauseClick}
-        >
-          <FaPause className="w-4 h-4" />
+      <div className="flex items-center justify-center gap-6 py-[2px] text-light">
+        <button type="button" className="flex h-8 w-8 items-center justify-center">
+          <TbArrowsShuffle className="h-5 w-5" />
         </button>
-      ) : (
-        <button
-          type="button"
-          className="flex items-center justify-center w-8 h-8 pl-1 bg-white rounded-full text-primary"
-          onClick={onPlayPauseClick}
-        >
-          <FaPlay className="w-4 h-4" />
+        <button type="button" className="flex h-8 w-8 items-center justify-center">
+          <BsRepeat className="h-5 w-5" />
         </button>
-      )}
-
-      <div className="flex justify-start flex-1 gap-2">
-        <button
-          type="button"
-          className="flex items-center justify-center w-8 h-8 text-primary"
-          onClick={onNextClick}
-        >
-          <FaForward className="w-4 h-4" />
-        </button>
-        <button type="button" className="flex items-center justify-center w-8 h-8 text-primary">
-          <ImLoop2 className="w-4 h-4" />
-        </button>
+        <div className="flex items-center justify-center w-16 h-16 text-primary">
+          <AiTwotoneSound />
+        </div>
+        <input
+          className="w-[100px] h-[10px]"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
       </div>
     </div>
   );

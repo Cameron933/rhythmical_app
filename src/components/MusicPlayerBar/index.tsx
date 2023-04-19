@@ -4,6 +4,7 @@ import { PlayerContext } from "@/contexts/playerContext";
 import { LyricContext } from "@/contexts/lyricContext";
 import { AiTwotoneSound } from "react-icons/ai";
 import { IMusicDetail } from "@/interfaces/music";
+import { timeConverter } from "@/utils/timeConverter";
 
 const MusicPlayerBar = () => {
   const { audioPlayer } = useContext(LyricContext);
@@ -20,23 +21,25 @@ const MusicPlayerBar = () => {
     setCurrentMusic(playerList[0]);
   }, [playerList]);
 
+  useEffect(() => {
+    console.log(currentMusic);
+    setCurrentMusicTime(Number(timeConverter(currentMusic.time)));
+  }, [currentMusic]);
+
   const onPlayPauseClick = () => {
-    console.log(playerList);
     setIsPlaying(!isPlaying);
     isPlaying ? audioPlayer?.current?.play() : audioPlayer?.current?.pause();
   };
 
   const toPrevMusic = () => {
-    const currentMusicIndex = listIndex;
-    const nextMusicIndex = currentMusicIndex - 1 > 0 ? currentMusicIndex - 1 : 0;
+    const nextMusicIndex = listIndex - 1 > 0 ? listIndex - 1 : 0;
     setListIndex(nextMusicIndex);
     setCurrentMusic(playerList[nextMusicIndex]);
     setIsPlaying(true);
   };
 
   const toNextMusic = () => {
-    const currentMusicIndex = listIndex;
-    const nextMusicIndex = currentMusicIndex < playerList.length - 1 ? currentMusicIndex + 1 : 0;
+    const nextMusicIndex = listIndex < playerList.length - 1 ? listIndex + 1 : 0;
     setListIndex(nextMusicIndex);
     setCurrentMusic(playerList[nextMusicIndex]);
     setIsPlaying(true);
@@ -81,7 +84,7 @@ const MusicPlayerBar = () => {
           <div className="relative w-[400px] h-[5px] bg-white rounded-lg">
             <div className="absolute bg-primary-400 w-[220px] h-[5px] rounded-lg" />
           </div>
-          <div className="pl-4">4:00</div>
+          <div className="pl-4">{currentMusicTime}</div>
         </div>
       </div>
 
@@ -90,7 +93,7 @@ const MusicPlayerBar = () => {
           <AiTwotoneSound />
         </div>
         <input
-          className="w-[100px]"
+          className="w-[100px] h-[10px]"
           type="range"
           min="0"
           max="1"

@@ -129,6 +129,10 @@ module.exports = {
       fontFamily: {
         roboto: ["var(--font-roboto)", ...fontFamily.sans],
       },
+
+      dropShadow: {
+        xsm: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      },
     },
   },
   plugins: [require("daisyui")],

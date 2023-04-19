@@ -16,10 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 const Home = ({ musicData }: Props) => {
   const { setPlayerList } = useContext(PlayerContext);
   useEffect(() => {
-    console.log("render");
-    console.log(musicData.data);
     setPlayerList(musicData.data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [musicData.data]);
 
   const handleButton = () => {

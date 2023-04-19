@@ -49,7 +49,7 @@ export const LinkButton = ({
       </div>
       <div className="absolute left-0 invisible top-2 group-hover:visible">
         <div className="absolute w-2 h-8 left-1 bg-primary" />
-        <div className="absolute w-16 h-8 left-3 bg-gradient-to-r from-primary/90 to-primary/0 " />
+        <div className="absolute w-14 lg:w-16 h-8 left-3 bg-gradient-to-r from-primary/90 to-primary/0 " />
       </div>
     </div>
   );
