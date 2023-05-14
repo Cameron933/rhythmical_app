@@ -4,12 +4,12 @@ import { LinkButton } from "@/stories/LinkButton";
 import Image from "next/image";
 const SideBar = () => {
   return (
-    <aside className="h-[100vh] w-0 flex-col bg-black text-white transition-all duration-200 ease-in-out md:flex md:w-[64px] lg:w-[320px]">
-      <div className="hidden md:block">
-        <div className="relative h-full drop-shadow-xsm">
-          <Image src="/bg_player.png" alt="Player background image" fill />
-        </div>
+    <aside className="h-[100vh] w-0 flex-col text-white transition-all duration-200 ease-in-out md:flex md:w-[64px] lg:w-[320px]">
+      <div className="relative h-full drop-shadow-bgImgShadow transition-none">
+        <Image src="/bg_sidebar.png" alt="Player background image" fill />
+      </div>
 
+      <div className="hidden md:block">
         <div className="absolute left-0 top-0 h-full md:w-[64px] lg:w-[320px] bg-dark-400 bg-opacity-80 backdrop-blur-2xl">
           <div className="flex items-center justify-around w-full h-28">
             <div className="flex items-center gap-2">
